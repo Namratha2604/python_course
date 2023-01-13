@@ -1,0 +1,28 @@
+s="abcd"
+it=iter(s)
+print(it)
+print(next(it))
+print(next(it))
+print(next(it))
+print(next(it))
+
+#create ur own iterator
+#in class, define an __iter__() method which returns an object with __next__()
+#if the class defines __next__(), then __iter__() can just return self
+class Reverse:
+    """iterating for looping over a sequence backwards."""
+    def __init__(self,data):
+        self.data=data
+        self.index=len(data)
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index==0:
+            raise StopIteration
+        self.index=self.index-1
+        return self.data[self.index]
+
+rev =Reverse("spam")
+for char in rev:
+    print(char)
